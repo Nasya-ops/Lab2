@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="Utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:body>
+  <center>
+   <h2>Students List</h2>
+   <h:form>
+
+Create new student: <h:inputText  value = "#{student.name}"></h:inputText>
+ Create averScore: <h:inputText value = "#{student.averScore}"></h:inputText>
+ <h:commandButton value= "Save" action = "#{student.insert}"></h:commandButton>
+  
+ </h:form>
+ <br/>
+ <h:form>
+Search <h:inputText  value = "#{student.id}"></h:inputText>
+  <h:commandButton value= "Search" action ="#{student.search_Key}">
+  <f:param name = "search_name" value = "#{student.id}"/>
+
+
+ 
+ </h:commandButton>
+ </h:form>
+  <br/>
+ <h:form>
+<h:inputText  value = "#{search_Key.name}"></h:inputText>
+ <h:inputText value = "#{search_Key.averScore}"></h:inputText>
+</h:form>
+
+
+</center>
+<h:dataTable value="#{student.select}" var = "st">
+<h:column>
+
+<f:facet name="header">id</f:facet>
+<h:outputText value = "#{st.id}"></h:outputText>
+
+</h:column>
+<h:column>
+
+<f:facet name="header">Student</f:facet>
+<h:outputText value = "#{st.name}"></h:outputText>
+
+</h:column>
+
+<h:column>
+
+<f:facet name="header">averScore</f:facet>
+<h:outputText value = "  #{st.averScore}"></h:outputText>
+
+</h:column>
+
+<h:column>
+
+ <h:form>
+<f:facet name="header">Edit</f:facet>
+ <h:commandButton value= "Edit" action = "#{student.edit_One}">
+ <f:param name = "act" value = "#{st.id}"/>
+ </h:commandButton>
+</h:form>
+</h:column>
+
+<h:column>
+ <h:form>
+<f:facet name="header">Delete</f:facet>
+ <h:commandButton value= "Delete" action = "#{student.delete}">
+ <f:param name = "delete_id" value = "#{st.id}"/>
+ </h:commandButton>
+</h:form>
+</h:column>
+
+
+
+</h:dataTable>
+</h:body>
+</html>
